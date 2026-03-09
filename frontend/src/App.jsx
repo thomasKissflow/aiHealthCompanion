@@ -30,7 +30,7 @@ function App() {
         setIsConnected(true)
         setMessages(prev => [...prev, {
           role: 'system',
-          content: '✓ Connected! Click the 🎤 Speak button to use voice input.'
+          content: 'Connected! Click the Speak button to use voice input.'
         }])
       } else {
         throw new Error('Backend not responding')
@@ -156,13 +156,13 @@ function App() {
       }
       setMessages(prev => [...prev, {
         role: 'system',
-        content: '🔇 Voice input muted'
+        content: 'Voice input muted'
       }])
     } else {
       // Unmute - start recognition
       setMessages(prev => [...prev, {
         role: 'system',
-        content: '🔊 Voice input active - Click the microphone button and speak!'
+        content: 'Voice input active - Click the microphone button and speak!'
       }])
     }
   }
@@ -190,7 +190,7 @@ function App() {
     if (!SpeechRecognition) {
       setMessages(prev => [...prev, {
         role: 'system',
-        content: '⚠️ Voice recognition not supported. Please use Chrome or Edge.'
+        content: 'Voice recognition not supported. Please use Chrome or Edge.'
       }])
       return
     }
@@ -235,7 +235,7 @@ function App() {
       recognitionInstance.start()
       setMessages(prev => [...prev, {
         role: 'system',
-        content: '🎤 Listening... Speak now!'
+        content: 'Listening... Speak now!'
       }])
     } catch (e) {
       console.error('Failed to start recognition:', e)
@@ -262,6 +262,14 @@ function App() {
           <div className="welcome-message">
             <h2>Welcome to AI Health Companion</h2>
             <p>Connect to the backend to start your health conversation</p>
+            <div className="glowing-orb-container">
+              <div className="glowing-orb">
+                <div className="orb-core"></div>
+                <div className="orb-ring orb-ring-1"></div>
+                <div className="orb-ring orb-ring-2"></div>
+                <div className="orb-ring orb-ring-3"></div>
+              </div>
+            </div>
           </div>
         )}
 
@@ -337,7 +345,7 @@ function App() {
           onClick={startListening}
           disabled={!isConnected || isMuted || isListening}
         >
-          {isListening ? '🎤 Listening...' : '🎤 Speak'}
+          {isListening ? 'Listening...' : 'Speak'}
         </button>
         
         <button
@@ -345,7 +353,7 @@ function App() {
           onClick={toggleMute}
           disabled={!isConnected}
         >
-          {isMuted ? '🔇 Unmute Voice' : '🔊 Voice Active'}
+          {isMuted ? 'Unmute Voice' : 'Voice Active'}
         </button>
       </div>
     </div>
